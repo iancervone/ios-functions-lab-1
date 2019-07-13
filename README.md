@@ -16,6 +16,19 @@ func totalWithTax() {
 }
 ```
 
+let itemCost = 45.0
+let nyTax = 0.08775
+
+func totalCostAfterTax(cost: Double, tax: Double) {
+let total = cost + tax
+print(Int(total))
+}
+
+totalCostAfterTax(cost: itemCost, tax: nyTax)
+
+
+
+
 Then, modify the function you implemented to have a return type of `Int`, and use an external name that looks more readable. Function calls should look something like "total cost of the item after tax"
 
 ## Question 2
@@ -33,6 +46,23 @@ if todaysTemperature <= 40 {
     print("Weather is moderate.")
 }
 ```
+let todaysTemperature = 72
+
+func weatherFeelsLike (temp: Int) -> String {
+if todaysTemperature <= 40 {
+return "It's cold out."
+} else if todaysTemperature >= 85 {
+return "It's really warm."
+} else {
+return "Weather is moderate."
+}
+}
+
+print(weatherFeelsLike(temp: todaysTemperature))
+
+
+
+
 
 
 ## Question 3
@@ -48,6 +78,20 @@ Input: `min2(a:1, b:2)`
 Output: `1`
 
 
+func smallestOfTwoNums(a: Int, b: Int) -> Int {
+if a <= b {
+return a
+} else {
+return b
+}
+}
+
+print(smallestOfTwoNums(a:1, b:2))
+
+
+
+
+
 ## Question 4
 
 Write a function that takes an `Int` and returns its last digit. Name the function `lastDigit`. Use _ to ignore the external parameter name.
@@ -61,9 +105,29 @@ Input: `lastDigit(12345)`
 Output: `5`
 
 
+var nums = 12345
+
+func lastDigit(_number: Int) -> Int {
+return _number % 10
+}
+print(lastDigit(_number: nums))
+
+
+
+
 ## Question 5
 
 Write a function that takes in any two positive integers and return the sum.
+
+func simpleAddition(num1: Int, num2: Int) -> Int {
+return (num1 + num2)
+}
+
+print(simpleAddition(num1: 5, num2: 12))
+
+
+
+
 
 
 ## Question 6
@@ -80,7 +144,34 @@ Write a function takes in any number grade and returns a corresponding letter gr
 | Below 65 | F |
 
 
+
+let numGrade = 100
+
+func letterGrade(grade: Int) -> String {
+if grade == 100 {
+return "A+"
+} else {
+if grade >= 90  {
+return "A"
+} else if grade >= 80 {
+return "B"
+} else if grade >= 70 {
+return "C"
+} else if grade >= 65 {
+return "D"
+}
+}
+return "F"
+}
+
+print(letterGrade(grade: numGrade))
+
+
+
+
+
 ## Question 7
+(I DID NOT GET THIS ANSWER YET BUT I WILL BE COMING BACK TO IT))
 
 Make a calculator function that takes in three parameters (two numbers and one operator) and returns the answer of the operation.
 
@@ -110,6 +201,33 @@ let taxPercentage = 0.09
 let myFinalCostWithTipAndTax = totalWithTipAndTax() //Fill in the arguments in function
 ```
 
+MY CODE WORKS BUT I GET AN EXTRA SET OF ( ) WHEN I PRINT MY RESULT, WHY IS THIS?)
+
+let mealCost = 45
+let tipPercentage = 0.15
+
+func totalCostWithTip(cost: Int, tip: Double) {
+let tipAmount = Double(cost) * tip
+let total = Double(cost) + tipAmount
+print(total)
+}
+
+let myCost = (totalCostWithTip(cost: mealCost, tip: tipPercentage))
+print(myCost)
+
+let taxPercentage = 0.09
+
+func totalCostWithTipAndTax(cost: Int, tax: Double, tip: Double) {
+let taxAmount = Double(cost) * tax
+let tipAmount = Double(cost) * tip
+let total = Double(cost) + taxAmount + tipAmount
+print(total)
+}
+
+let myFinalCost = (totalCostWithTipAndTax(cost: mealCost, tax: taxPercentage, tip: tipPercentage))
+print(myFinalCost)
+
+
 
 ## Question 9
 
@@ -119,6 +237,20 @@ Example:
 Input: `repeatPrint(message: "+", count: 10)`
 
 Output: `++++++++++`
+
+
+
+func repeatThisForSomeTime(message: String, count: Int) {
+for i in 0..<count {
+print(message, terminator: "")
+}
+}
+
+repeatThisForSomeTime(message: "Win ", count: 5)
+
+
+
+
 
 
 ## Question 10
@@ -134,6 +266,23 @@ Input: `first(3)`
 Output: `[1, 2, 3]`
 
 
+
+var outputArray = [Int]()
+
+func first(_n: Int) -> [Int] {
+for i in 1..._n {
+outputArray.insert(i, at: i - 1)   }
+return outputArray
+}
+
+print(first(_n: 3))
+
+
+
+
+
+
+
 ## Question 11
 
 Write a function that prints the numbers from 1 to x, except:
@@ -142,6 +291,26 @@ If the number if a multiple of 3, print `"Fizz"` instead of the number
 If the number is a multiple of 5, print `"Buzz"` instead of the number
 If the number is a multiple of 3 AND 5, print `"FizzBuzz"` instead of the number
 Your function should take in one parameter: x (the number to count up to)
+
+
+
+func fizzBuzz(x: Int) {
+for i in 1...x {
+switch i {
+case _ where i % 15 == 0:
+print("FizzBuzz")
+case _ where i % 3 == 0:
+print("Fizz")
+case _ where i % 5 == 0:
+print("Buzz")
+default : print(i)
+}
+}
+}
+print(fizzBuzz(x: 30))
+
+
+
 
 
 ## Question 12
@@ -160,12 +329,53 @@ Output: `[3, 2, 1]`
 Write a function that prints out the most frequently appearing Int in an array of Int.
 
 
+let nums = [1,2,3,4,2,3,4,2,3,2,3,4,5,5,5,5,5]
+func frequencyFinder(arr: [Int]) {
+var dictOfStuff = [Int:Int]()
+for key in arr {
+if let currentNum = dictOfStuff[key] {
+dictOfStuff[key] = currentNum + 1
+} else {
+dictOfStuff[key] = 1
+}
+}
+print(dictOfStuff)
+var mostFrequent = dictOfStuff.values.max()
+if let mostFrequent = mostFrequent {
+print(mostFrequent)
+}
+}
+frequencyFinder(arr: nums)
+
+
+
+
+
 ## Question 14
 
 Write a function that sums all the even indices of an array of Ints.
 
 
+let nums = [1,2,3,4,5,6,7,8,9,10]
+
+func addition(arr: [Int]) {
+var sum = Int()
+for num in arr {
+if num % 2 == 0 {
+sum = sum + num
+}
+}
+print(sum)
+}
+
+addition(arr: nums)
+
+
+
+
 ## Question 15
+(SKIPPED)
+
 
 Write a function that flips a dictionary.  All of the keys are now values and all of the values are now keys.
 
@@ -176,6 +386,7 @@ Output: `["hi": 1, "bye": 5]`
 
 
 ## Question 16
+(SKIPPED)
 
 Write a function that finds the person with the second highest test score in a Dictionary that maps names to scores.
 
@@ -189,12 +400,45 @@ Output: `"Person 3"`
 Write a function that determines if a value is inside of array.
 
 
+let nums = [1,2,3,4,5,6,7,8,9,10]
+
+func searchInArray(num: Int, Arr: [Int]) {
+var foundNotFound = "number not found in array"
+for x in Arr {
+if x == num {
+foundNotFound = "number is found in array"
+}
+}
+print(foundNotFound)
+}
+
+searchInArray(num: 7, Arr: nums)
+
+
+
 ## Question 18
 
 Write a function takes an `Int` as input, and returns true if it is even, or false if it is odd.
 Using your new function, write code that prints out whether `dieRoll` is even or odd:
 
 `let dieRoll = Int(arc4random_uniform(6) + 1)`
+
+
+let dieRoll = Int(arc4random_uniform(6) + 1)
+
+func oddOrEven(num: Int) -> Bool {
+if num % 2 == 0 {
+return true
+} else {
+return false
+}
+}
+print(dieRoll)
+print(oddOrEven(num: dieRoll))
+
+
+
+
 
 
 ## Question 19
@@ -208,6 +452,28 @@ Using your function from the first step, use String interpolation to print a sen
 If you haven't already done so, write a function that takes in an Int and returns whether that number is even or odd. Use that function to print a sentence that states whether the largest Int in `myArray` is even or odd.
 
 
+let myArray = [3,5,1,3,532,1,4,91,20,30,92,143]
+
+func largestNum(arr: [Int]) {
+var biggest = 0
+for num in arr {
+if num > biggest {
+biggest = num
+}
+}
+if biggest % 2 == 0 {
+print("the biggest number is \(biggest) and it is an even number")
+} else {
+print("the biggest number is \(biggest) and it is an odd number")
+}
+}
+
+largestNum(arr: myArray)
+
+
+
+
+
 ## Question 20
 
 Write a function that takes a String as input and returns the number of characters in the string
@@ -215,6 +481,21 @@ Write a function that takes a String as input and returns the number of characte
 Using your function, print how many characters are in myString:
 
 `let myString = "Swift is a new programming language for iOS, OS X, watchOS, and tvOS apps that builds on the best of C and Objective-C, without the constraints of C compatibility."`
+
+
+let myString = "Swift is a new programming language for iOS, OS X, watchOS, and tvOS apps that builds on the best of C and Objective-C, without the constraints of C compatibility."
+
+func charCount(string: String) -> Int {
+let number = string.count
+print(number)
+return Int()
+}
+
+charCount(string: myString)
+
+
+
+
 
 
 ## Question 21
@@ -231,6 +512,25 @@ let targetCharacter: Character = "i"
 Sample output: `3`
 
 
+let testString = "This is a test string for your code"
+let targetCharacter: Character = "i"
+
+func specificCharCount(string: String, char: Character) -> Int {
+var numOfChar = Int()
+for letter in string {
+if letter == char {
+numOfChar += 1
+}
+}
+print(numOfChar)
+return numOfChar
+}
+specificCharCount(string: testString, char: targetCharacter)
+
+
+
+
+
 ## Question 22
 
 Write a function that counts how many characters in a String match one of several possible characters.  (e.g: count how many vowels are in a String, or count how many "a"s "b"s and "c"s are in a Sting)
@@ -243,6 +543,30 @@ let targetCharacters: [Character] = ["a","e","i","o","u"]
 ```
 
 Output: `13`
+
+
+
+let inputString = "This one is a little more complicated"
+let targetCharacters: [Character] = ["a","e","i","o","u"]
+
+func arrayCharCount(string: String, char: [Character]) -> Int {
+var numOfChar = Int()
+for x in char {
+for char in string {
+if  x == char {
+numOfChar += 1
+}
+}
+}
+print(numOfChar)
+return numOfChar
+}
+arrayCharCount(string: inputString, char: targetCharacters)
+
+
+
+
+
 
 
 ## Question 23
